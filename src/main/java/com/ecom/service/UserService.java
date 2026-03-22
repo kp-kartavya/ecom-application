@@ -2,14 +2,16 @@ package com.ecom.service;
 
 import java.util.List;
 
+import com.ecom.dto.UserRequest;
+import com.ecom.dto.UserResponse;
 import com.ecom.entity.User;
 
 public interface UserService {
-	public List<User> fetchAllUsers();
+	public List<UserResponse> fetchAllUsers();
 
-	public User addUser(User user);
+	public UserResponse addUser(UserRequest user);
 
 	public User fetchUserById(Long id);
 
-	public User updateUser(User user, Long id);
+	public UserResponse updateUser(UserRequest user, Long id);
 }

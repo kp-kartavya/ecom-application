@@ -10,42 +10,41 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ecom.dto.UserRequest;
+import com.ecom.dto.UserResponse;
 import com.ecom.entity.User;
 import com.ecom.service.UserService;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-
-
 
 @RestController
 @RequestMapping("/users")
 public class UserController {
 	@Autowired
 	UserService userService;
-	
+
 	@GetMapping("/getAllUsers")
-	public ResponseEntity<List<User>> getAllUsers() {
-		List<User> users = userService.fetchAllUsers();
+	public ResponseEntity<List<UserResponse>> getAllUsers() {
+		List<UserResponse> users = userService.fetchAllUsers();
 		return ResponseEntity.ok(users);
 	}
-	
+
 	@PostMapping("/addUser")
-	public ResponseEntity<User> addUser(@RequestBody User user) {
-		User newUser = userService.addUser(user);
+	public ResponseEntity<UserResponse> addUser(@RequestBody UserRequest user) {
+		UserResponse newUser = userService.addUser(user);
 		return ResponseEntity.ok(newUser);
 	}
-	
+
 	@GetMapping("/getUserById")
 	public ResponseEntity<User> getUserById(@RequestParam Long id) {
 		User user = userService.fetchUserById(id);
 		return ResponseEntity.ok(user);
 	}
-	
+
 	@PutMapping("/updateUser")
-	public ResponseEntity<User> updateUser(@RequestBody User user, @RequestParam Long id) {
-		User updateUser = userService.updateUser(user, id);
+	public ResponseEntity<UserResponse> updateUser(@RequestBody UserRequest user, @RequestParam Long id) {
+		UserResponse updateUser = userService.updateUser(user, id);
 		return ResponseEntity.ok(updateUser);
 	}
-	
+
 }
