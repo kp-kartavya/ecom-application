@@ -1,5 +1,7 @@
 package com.ecom;
 
+import java.util.TimeZone;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,6 +15,8 @@ public class EcomMicroserviceApplication {
 	}
 
 	public static void main(String[] args) {
+		TimeZone.setDefault(TimeZone.getTimeZone("Asia/Kolkata"));
+		System.out.println("kartavya" + TimeZone.getDefault());
 		SpringApplication.run(EcomMicroserviceApplication.class, args);
 	}
 

@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ecom.dto.UserRequest;
-import com.ecom.dto.UserResponse;
+import com.ecom.dto.UserDto;
 import com.ecom.entity.User;
 import com.ecom.service.UserService;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,14 +23,14 @@ public class UserController {
 	UserService userService;
 
 	@GetMapping("/getAllUsers")
-	public ResponseEntity<List<UserResponse>> getAllUsers() {
-		List<UserResponse> users = userService.fetchAllUsers();
+	public ResponseEntity<List<UserDto>> getAllUsers() {
+		List<UserDto> users = userService.fetchAllUsers();
 		return ResponseEntity.ok(users);
 	}
 
 	@PostMapping("/addUser")
-	public ResponseEntity<UserResponse> addUser(@RequestBody UserRequest user) {
-		UserResponse newUser = userService.addUser(user);
+	public ResponseEntity<UserDto> addUser(@RequestBody UserDto user) {
+		UserDto newUser = userService.addUser(user);
 		return ResponseEntity.ok(newUser);
 	}
 
@@ -42,8 +41,8 @@ public class UserController {
 	}
 
 	@PutMapping("/updateUser")
-	public ResponseEntity<UserResponse> updateUser(@RequestBody UserRequest user, @RequestParam Long id) {
-		UserResponse updateUser = userService.updateUser(user, id);
+	public ResponseEntity<UserDto> updateUser(@RequestBody UserDto user, @RequestParam Long id) {
+		UserDto updateUser = userService.updateUser(user, id);
 		return ResponseEntity.ok(updateUser);
 	}
 
